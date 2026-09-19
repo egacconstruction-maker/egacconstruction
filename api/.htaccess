@@ -1,0 +1,20 @@
+# EGAC — backend protection
+# Only submit.php, admin.php and export.php are meant to be reachable.
+
+<FilesMatch "^(config|config\.example|lib)\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Never list the folder
+Options -Indexes
+
+# The admin page and the endpoints must not be indexed
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

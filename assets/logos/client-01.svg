@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" width="320" height="120">
+<circle cx="52" cy="60" r="26" fill="none" stroke="#8A93A0" stroke-width="4"/><path d="M26 60 h52" stroke="#8A93A0" stroke-width="4"/>
+<text x="100" y="56" font-family="Manrope, Helvetica, Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="2" fill="#8A93A0">CLIENT 01</text>
+<text x="100" y="80" font-family="Manrope, Helvetica, Arial, sans-serif" font-size="12" letter-spacing="3" fill="#8A93A0" opacity="0.5">PLACEHOLDER</text>
+</svg>

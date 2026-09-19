@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project | EGAC Construction</title>
+<meta name="description" content="Project record — facade scope, materials and systems delivered by EGAC Construction.">
+<meta name="theme-color" content="#0B1C30">
+<link rel="canonical" href="https://www.egacconstruction.com/pages/project.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="EGAC Construction">
+<meta property="og:title" content="Project | EGAC Construction">
+<meta property="og:description" content="Facade scope, materials and systems delivered by EGAC Construction.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+/* Theme, before first paint — prevents a flash of the wrong theme.
+   Kept inline and tiny on purpose; js/theme.js does everything else. */
+(function () {
+  try {
+    var saved = localStorage.getItem('egac-theme');
+    var dark = saved ? saved === 'dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    document.documentElement.classList.add('js');
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.classList.add('js');
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/animations.css">
+<link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body data-root="../" data-nav-solid="true">
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- Page transition. Four layered panels, driven entirely by CSS keyframes:
+     they sweep up on exit and peel away on arrival, so the site is never left
+     covered even if JavaScript fails. Decorative only — pointer-events: none. -->
+<div class="curtain" aria-hidden="true">
+  <span class="curtain__panel"></span>
+  <span class="curtain__panel"></span>
+  <span class="curtain__panel"></span>
+  <span class="curtain__panel"></span>
+</div>
+
+<header class="header is-forced" id="header">
+  <div class="header__inner">
+    <a class="brand" href="../index.html" aria-label="EGAC Construction — home">
+      <img class="brand__logo brand__logo--light" data-logo="white" src="../assets/logos/egac-logo-white.png" alt="" width="1200" height="490">
+      <img class="brand__logo brand__logo--dark" data-logo="navy" src="../assets/logos/egac-logo-navy.png" alt="" width="1200" height="489">
+      <span class="visually-hidden" data-brand-name>EGAC Construction</span>
+    </a>
+
+    <nav aria-label="Main">
+      <ul class="nav" role="list">
+        <li><a class="nav__link" href="../index.html#about" data-i18n="nav.about">About</a></li>
+        <li><a class="nav__link" href="../index.html#solutions" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a class="nav__link" href="../index.html#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a class="nav__link" href="../index.html#materials" data-i18n="nav.materials">Materials</a></li>
+        <li><a class="nav__link" href="../index.html#why" data-i18n="nav.why">Why EGAC</a></li>
+        <li><a class="nav__link" href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <div class="lang" role="group" data-i18n-aria="nav.langSwitch" aria-label="Switch language">
+        <button class="lang__btn" type="button" data-lang-btn="en">EN</button>
+        <span class="lang__sep" aria-hidden="true">/</span>
+        <button class="lang__btn" type="button" data-lang-btn="ar">AR</button>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <span class="theme-toggle__icon" aria-hidden="true">
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4.4"/>
+            <path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7"/>
+          </svg>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.2 14.4A8.4 8.4 0 0 1 9.6 3.8a8.4 8.4 0 1 0 10.6 10.6Z"/>
+          </svg>
+        </span>
+      </button>
+      <button class="btn btn--nav" type="button" data-open-inquiry>
+        <span data-i18n="nav.cta">Start a project</span><svg class="btn__arrow" viewBox="0 0 26 10" width="26" height="10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M0 5h25.2"/><path d="M21.4 1.2 25.2 5l-3.8 3.8"/></svg>
+      </button>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mobileMenu" data-i18n-aria="nav.menuOpen" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile" hidden>
+  <ul class="mobile-menu__list" role="list">
+    <li><a class="mobile-menu__link" href="../index.html#about"><span class="num">01</span><span data-i18n="nav.about">About</span></a></li>
+    <li><a class="mobile-menu__link" href="../index.html#solutions"><span class="num">02</span><span data-i18n="nav.solutions">Solutions</span></a></li>
+    <li><a class="mobile-menu__link" href="../index.html#projects"><span class="num">03</span><span data-i18n="nav.projects">Projects</span></a></li>
+    <li><a class="mobile-menu__link" href="../index.html#materials"><span class="num">04</span><span data-i18n="nav.materials">Materials</span></a></li>
+    <li><a class="mobile-menu__link" href="../index.html#why"><span class="num">05</span><span data-i18n="nav.why">Why EGAC</span></a></li>
+    <li><a class="mobile-menu__link" href="../index.html#contact"><span class="num">06</span><span data-i18n="nav.contact">Contact</span></a></li>
+  </ul>
+  <div class="mobile-menu__foot">
+    <a href="tel:+201000000000" data-phone-link>+20 100 000 0000</a>
+    <a href="mailto:info@egacconstruction.com" data-email-link>info@egacconstruction.com</a>
+  </div>
+</nav>
+
+<main id="main">
+  <!-- Everything below is filled by js/project-page.js from ?project=<id>.
+       Blocks whose data is empty are removed rather than shown blank. -->
+  <section class="page-hero">
+    <div class="container">
+      <a class="page-hero__back" href="../index.html#projects">
+        <span data-i18n="project.back">All projects</span>
+      </a>
+      <h1 class="page-hero__title" id="pTitle"></h1>
+      <dl class="page-hero__facts" id="pFacts"></dl>
+    </div>
+  </section>
+
+  <figure class="container project-hero-img" id="pHeroFigure" data-reveal="image">
+    <img id="pHero" src="" alt="" decoding="async" fetchpriority="high">
+  </figure>
+
+  <section class="section">
+    <div class="container">
+      <div class="project-body" data-stagger>
+        <div id="pAboutBlock" hidden>
+          <h2 data-i18n="project.about">The project</h2>
+          <p id="pAbout"></p>
+        </div>
+        <div id="pSystemsBlock" hidden>
+          <h2 data-i18n="project.systems">Materials &amp; systems</h2>
+          <ul class="project-materials" id="pSystems" role="list"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="pGallerySection" aria-labelledby="galleryTitle">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div><h2 class="section-head__title" id="galleryTitle" data-i18n="project.gallery">Project gallery</h2></div>
+      </div>
+      <!-- vertical scroll of large images; click opens the fullscreen gallery -->
+      <div class="gallery" id="pGallery"></div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="pVideoSection" hidden aria-labelledby="videoTitle">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div><h2 class="section-head__title" id="videoTitle" data-i18n="project.video">Project video</h2></div>
+      </div>
+      <div class="project-video" data-reveal="image">
+        <video id="pVideo" controls preload="metadata" playsinline></video>
+      </div>
+    </div>
+  </section>
+
+  <section class="next-project">
+    <div class="container next-project__row">
+      <a class="next-project__link next-project__link--prev" id="pPrev" href="#">
+        <span class="next-project__label" data-i18n="project.prev">Previous project</span>
+        <span class="next-project__name" id="pPrevName"></span>
+      </a>
+      <a class="next-project__link next-project__link--next" id="pNext" href="#">
+        <span class="next-project__label" data-i18n="project.next">Next project</span>
+        <span class="next-project__name" id="pNextName"></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta__bg" aria-hidden="true">
+      <img src="../assets/images/cta.svg" alt="" loading="lazy" decoding="async" data-parallax="0.1">
+    </div>
+    <div class="cta__inner container">
+      <h2 class="cta__title" data-reveal="lines">
+        <span class="line-mask"><span data-i18n="cta.l1">Let's build</span></span>
+        <span class="line-mask"><span data-i18n="cta.l2">something distinctive.</span></span>
+      </h2>
+      <div class="cta__actions" data-reveal>
+        <button class="btn btn--light" type="button" data-open-inquiry>
+          <span data-i18n="project.cta">Start a project like this</span><svg class="btn__arrow" viewBox="0 0 26 10" width="26" height="10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M0 5h25.2"/><path d="M21.4 1.2 25.2 5l-3.8 3.8"/></svg>
+        </button>
+        <a class="btn btn--ghost" href="#" data-whatsapp-link target="_blank" rel="noopener">
+          <span data-i18n="float.whatsapp">Chat on WhatsApp</span><svg class="btn__arrow" viewBox="0 0 26 10" width="26" height="10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M0 5h25.2"/><path d="M21.4 1.2 25.2 5l-3.8 3.8"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img class="footer__logo" data-logo="white" src="../assets/logos/egac-logo-white.png" alt="" width="1200" height="490">
+        <span class="visually-hidden" data-brand-name>EGAC Construction</span>
+        <p class="footer__desc" data-brand-sub>Facade &amp; Architectural Solutions</p>
+      </div>
+      <div class="footer__col">
+        <h3 data-i18n="footer.company">Company</h3>
+        <ul role="list">
+          <li><a href="../index.html#about" data-i18n="footer.about">About us</a></li>
+          <li><a href="../index.html#projects" data-i18n="footer.projects">Projects</a></li>
+          <li><a href="../index.html#why" data-i18n="footer.why">Why EGAC</a></li>
+          <li><a href="../index.html#contact" data-i18n="footer.contactLink">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3 data-i18n="footer.solutions">Solutions</h3>
+        <ul role="list" id="footerSolutions"></ul>
+      </div>
+      <div class="footer__col">
+        <h3 data-i18n="footer.contact">Contact</h3>
+        <ul role="list">
+          <li><span data-address>Cairo, Egypt</span></li>
+          <li><a href="tel:+201000000000" data-phone-link>+20 100 000 0000</a></li>
+          <li><a href="mailto:info@egacconstruction.com" data-email-link>info@egacconstruction.com</a></li>
+          <li><span data-hours>Saturday – Thursday · 9:00 – 18:00</span></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3 data-i18n="footer.social">Social</h3>
+        <ul role="list" id="footerSocial"></ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span data-i18n="footer.rights">© 2026 EGAC Construction. All rights reserved.</span>
+      <span data-i18n="footer.demo">Prototype site. All figures, projects and logos are demonstration content.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="floats">
+  <a class="float float--whatsapp" href="#" data-whatsapp-link target="_blank" rel="noopener" data-i18n-aria="float.whatsapp" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.65-1.23-1.46-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.41-.56-.42h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+    <span class="float__tip" data-i18n="float.whatsapp">Chat on WhatsApp</span>
+  </a>
+  <button class="float" type="button" data-open-inquiry data-i18n-aria="float.inquiry" aria-label="Send an inquiry">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H8.5L4 21.5V5a1 1 0 0 1 1-1Zm3 5h10v1.6H7V9Zm0 3.6h7v1.6H7v-1.6Z"/></svg>
+    <span class="float__tip" data-i18n="float.inquiry">Send an inquiry</span>
+  </button>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project gallery" hidden>
+  <button class="lightbox__close" type="button" data-lightbox-close data-i18n-aria="light.close" aria-label="Close gallery"></button>
+  <figure class="lightbox__figure"><img id="lightboxImg" src="" alt=""></figure>
+  <div class="lightbox__bar">
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev data-i18n-aria="light.prev" aria-label="Previous image"></button>
+    <span id="lightboxCount">1 / 1</span>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next data-i18n-aria="light.next" aria-label="Next image"></button>
+  </div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+<script src="../js/siteConfig.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/language.js"></script>
+<script src="../js/theme.js" defer></script>
+<script src="../js/navigation.js" defer></script>
+<script src="../js/animations.js" defer></script>
+<script src="../js/projects.js" defer></script>
+<script src="../js/contact.js" defer></script>
+<script src="../js/project-page.js" defer></script>
+<script src="../js/main.js" defer></script>
+</body>
+</html>

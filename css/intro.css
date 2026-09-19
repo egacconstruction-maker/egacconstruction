@@ -1,0 +1,240 @@
+/* ============================================================================
+   EGAC CONSTRUCTION — ENTRANCE INTRO ("Blueprint Registration Scan")
+   ----------------------------------------------------------------------------
+   Fully isolated under the egac-intro__ namespace. Nothing here touches any
+   selector used elsewhere in the site, so it cannot conflict with main.css,
+   animations.css or responsive.css.
+
+   Concept: a dark architectural drafting space -> a faint blueprint grid
+   resolves in -> a thin gold crosshair draws itself through the centered
+   EGAC mark -> viewfinder-style registration brackets lock onto the mark,
+   like a surveyor's instrument confirming a fixed point -> a single gold
+   measuring-line sweeps once across the frame -> everything retracts as the
+   mark travels into the real navbar logo's live position.
+
+   Driven by four timed classes (is-stage-1..4) added by js/intro.js; every
+   stage animates only transform/opacity, never layout properties.
+   ========================================================================== */
+
+.egac-intro {
+  --intro-navy: #05101C;
+  --intro-navy-deep: #030B14;
+  --intro-gold: #C9922E;
+  --intro-logo-w: min(220px, 46vw);
+  --tx: 0px; --ty: 0px; --ts: 1;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  isolation: isolate;
+  overflow: hidden;
+  background: radial-gradient(120% 100% at 50% 50%, var(--intro-navy) 0%, var(--intro-navy-deep) 100%);
+  pointer-events: auto;
+  transition: opacity 420ms ease;
+}
+.egac-intro.is-hidden { opacity: 0; pointer-events: none; }
+
+/* ------------------------------------------------------------- drafting grid
+   A faint technical grid, like paper under a drawing — never louder than a
+   watermark. Two repeating-linear-gradients, no images, no JS drawing. */
+.egac-intro__grid {
+  position: absolute;
+  inset: -2px;
+  background-image:
+    repeating-linear-gradient(to right, rgba(201, 146, 46, 0.09) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(to bottom, rgba(201, 146, 46, 0.09) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(to right, rgba(237, 241, 245, 0.035) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(to bottom, rgba(237, 241, 245, 0.035) 0 1px, transparent 1px 24px);
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 900ms ease, transform 1400ms ease, filter 700ms ease;
+  mask-image: radial-gradient(85% 85% at 50% 50%, #000 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(85% 85% at 50% 50%, #000 55%, transparent 100%);
+}
+.egac-intro.is-stage-1 .egac-intro__grid { opacity: 1; }
+.egac-intro.is-stage-3 .egac-intro__grid { opacity: 1; filter: brightness(1.5); }
+.egac-intro.is-stage-4 .egac-intro__grid { opacity: 0; transform: scale(1); transition: opacity 750ms ease; }
+
+/* ---------------------------------------------------------------- crosshair
+   Two hairlines drawing themselves through the exact center, like a
+   surveyor's line, or a drafting guide locking onto a fixed point. */
+.egac-intro__crosshair {
+  position: absolute;
+  background: linear-gradient(to right, transparent 0%, rgba(201, 146, 46, 0.85) 50%, transparent 100%);
+  opacity: 0;
+  transition: transform 900ms cubic-bezier(.65, 0, .35, 1), opacity 500ms ease;
+}
+.egac-intro__crosshair--h {
+  left: 0; right: 0; top: 50%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: center;
+}
+.egac-intro__crosshair--v {
+  top: 0; bottom: 0; left: 50%;
+  width: 1px;
+  transform: scaleY(0);
+  transform-origin: center;
+  background: linear-gradient(to bottom, transparent 0%, rgba(201, 146, 46, 0.85) 50%, transparent 100%);
+}
+.egac-intro.is-stage-1 .egac-intro__crosshair { opacity: 1; }
+.egac-intro.is-stage-2 .egac-intro__crosshair--h,
+.egac-intro.is-stage-3 .egac-intro__crosshair--h { transform: scaleX(1); }
+.egac-intro.is-stage-2 .egac-intro__crosshair--v,
+.egac-intro.is-stage-3 .egac-intro__crosshair--v { transform: scaleY(1); }
+.egac-intro.is-stage-4 .egac-intro__crosshair {
+  opacity: 0;
+  transition: transform 700ms cubic-bezier(.65, 0, .35, 1), opacity 500ms ease;
+}
+.egac-intro.is-stage-4 .egac-intro__crosshair--h { transform: scaleX(0); }
+.egac-intro.is-stage-4 .egac-intro__crosshair--v { transform: scaleY(0); }
+
+/* --------------------------------------------------------------- the sweep
+   One controlled pass of gold light, like a measuring instrument taking a
+   single reading — never a loop, never a shimmer effect. */
+.egac-intro__beam {
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: min(46vw, 620px);
+  transform: translateX(-320vw) skewX(-14deg);
+  background: linear-gradient(to right,
+    rgba(201, 146, 46, 0) 0%,
+    rgba(201, 146, 46, 0.16) 45%,
+    rgba(237, 214, 168, 0.30) 50%,
+    rgba(201, 146, 46, 0.16) 55%,
+    rgba(201, 146, 46, 0) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 1000ms cubic-bezier(.4, 0, .2, 1), opacity 200ms ease;
+}
+.egac-intro.is-stage-3 .egac-intro__beam {
+  opacity: 1;
+  transform: translateX(220vw) skewX(-14deg);
+}
+.egac-intro.is-stage-4 .egac-intro__beam { opacity: 0; transition: opacity 300ms ease; }
+
+/* ------------------------------------------------------------ architectural
+   glow — a soft, controlled warm light source behind the logo. Radial only;
+   no bloom filters, no spread beyond a tight, believable falloff. */
+.egac-intro__glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(closest-side,
+    rgba(201, 146, 46, 0.28) 0%,
+    rgba(201, 146, 46, 0.10) 42%,
+    rgba(5, 16, 28, 0) 68%);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 900ms ease, transform 1300ms ease;
+  pointer-events: none;
+}
+.egac-intro.is-stage-1 .egac-intro__glow { opacity: 0.8; transform: scale(0.96); }
+.egac-intro.is-stage-2 .egac-intro__glow,
+.egac-intro.is-stage-3 .egac-intro__glow { opacity: 1; transform: scale(1.04); }
+.egac-intro.is-stage-4 .egac-intro__glow { opacity: 0; transition: opacity 650ms ease; }
+
+/* -------------------------------------------------------------------- logo
+   Anchored by its own center point so the travel transform (applied by
+   js/intro.js as --tx / --ty / --ts) reads as one continuous move, never a
+   reposition. Opacity only ever fades IN once, at the very start; it is
+   never faded out — it travels, in place, into the navbar. */
+.egac-intro__logo {
+  position: absolute;
+  top: 50%; left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 620ms ease, filter 620ms ease, transform 620ms ease;
+  will-change: transform;
+}
+.egac-intro__logo img {
+  display: block;
+  width: var(--intro-logo-w);
+  height: auto;
+  position: relative;
+}
+.egac-intro.is-stage-1 .egac-intro__logo {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate(-50%, -50%) scale(1);
+}
+.egac-intro.is-stage-4 .egac-intro__logo {
+  transition: transform 950ms cubic-bezier(.22, 1, .36, 1);
+  transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(var(--ts));
+}
+
+/* ------------------------------------------------------- registration marks
+   Four small viewfinder-style brackets, like a surveying instrument locking
+   onto a fixed point. They start wide and loose, converge snugly onto the
+   mark once it is confirmed, then release outward as the mark departs. */
+.egac-intro__mark {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  transition: opacity 500ms ease, transform 700ms cubic-bezier(.22, 1, .36, 1);
+}
+.egac-intro__mark--tl { top: -22px; left: -22px; border-top: 1.5px solid var(--intro-gold); border-left: 1.5px solid var(--intro-gold); transform: translate(-10px, -10px); }
+.egac-intro__mark--tr { top: -22px; right: -22px; border-top: 1.5px solid var(--intro-gold); border-right: 1.5px solid var(--intro-gold); transform: translate(10px, -10px); }
+.egac-intro__mark--bl { bottom: -22px; left: -22px; border-bottom: 1.5px solid var(--intro-gold); border-left: 1.5px solid var(--intro-gold); transform: translate(-10px, 10px); }
+.egac-intro__mark--br { bottom: -22px; right: -22px; border-bottom: 1.5px solid var(--intro-gold); border-right: 1.5px solid var(--intro-gold); transform: translate(10px, 10px); }
+
+.egac-intro.is-stage-2 .egac-intro__mark,
+.egac-intro.is-stage-3 .egac-intro__mark { opacity: 0.9; transform: translate(0, 0); }
+.egac-intro.is-stage-4 .egac-intro__mark {
+  opacity: 0;
+  transition: opacity 400ms ease, transform 650ms cubic-bezier(.4, 0, .2, 1);
+}
+.egac-intro.is-stage-4 .egac-intro__mark--tl { transform: translate(-16px, -16px); }
+.egac-intro.is-stage-4 .egac-intro__mark--tr { transform: translate(16px, -16px); }
+.egac-intro.is-stage-4 .egac-intro__mark--bl { transform: translate(-16px, 16px); }
+.egac-intro.is-stage-4 .egac-intro__mark--br { transform: translate(16px, 16px); }
+
+/* Once the intro has handed off, let the real navbar logo hold its final
+   state without replaying its own separate entrance fade — the traveling
+   intro logo already delivered that motion, so replaying it would read as a
+   second, disconnected fade rather than one continuous object. This rule
+   lives here (not in animations.css) and only fires once the intro itself
+   has completed, so the ordinary animation is untouched for anyone who
+   never sees the intro. */
+html.egac-intro-ran .brand {
+  opacity: 1 !important;
+  animation: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+/* The header itself also has a pre-existing fade/slide-in (nav-in) tied to
+   the same is-hero-ready flag. Left alone it would replay a moment after
+   the handoff above and dip the just-arrived logo's opacity along with it
+   (opacity multiplies through the parent), undoing the seamless landing.
+   Neutralizing it only in this branch keeps that entrance animation fully
+   intact for any path that doesn't run this intro. */
+html.egac-intro-ran .header {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Locks scroll only for the ~2.5s the intro is on screen. */
+html.egac-intro-lock,
+html.egac-intro-lock body { overflow: hidden; }
+
+/* -------------------------------------------------------------- reduced
+   motion — skip the cinematic entirely and reveal the site immediately. */
+@media (prefers-reduced-motion: reduce) {
+  .egac-intro { display: none !important; }
+}
+
+/* ---------------------------------------------------------------- mobile
+   Smaller mark, tighter registration brackets, shorter beam travel. */
+@media (max-width: 600px) {
+  .egac-intro__logo img { width: min(148px, 42vw); }
+  .egac-intro__mark { width: 11px; height: 11px; }
+  .egac-intro__mark--tl, .egac-intro__mark--tr { top: -16px; }
+  .egac-intro__mark--bl, .egac-intro__mark--br { bottom: -16px; }
+  .egac-intro__mark--tl, .egac-intro__mark--bl { left: -16px; }
+  .egac-intro__mark--tr, .egac-intro__mark--br { right: -16px; }
+  .egac-intro__beam { width: min(60vw, 320px); }
+  .egac-intro.is-stage-3 .egac-intro__beam { transform: translateX(160vw) skewX(-14deg); }
+}

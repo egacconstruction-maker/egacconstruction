@@ -1,0 +1,258 @@
+/* ============================================================================
+   EGAC CONSTRUCTION — ANIMATION LAYER
+   ----------------------------------------------------------------------------
+   Reveal states are CSS-driven and switched by an IntersectionObserver, so the
+   site animates correctly even if the GSAP CDN is unavailable. GSAP, when it
+   loads, drives the hero timeline, parallax and the counters on top of this.
+   ========================================================================== */
+
+/* --------------------------------------------------------------- base reveal */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 900ms var(--ease), transform 900ms var(--ease);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+
+[data-reveal="fade"] { transform: none; }
+
+/* masked image reveal — clip + scale + fade, 0.8–1.2s */
+[data-reveal="image"] {
+  opacity: 0;
+  transform: scale(1.08);
+  clip-path: inset(14% 8% 14% 8%);
+  transition: opacity 900ms var(--ease), transform 1200ms var(--ease), clip-path 1100ms var(--ease);
+}
+[data-reveal="image"].is-in { opacity: 1; transform: scale(1); clip-path: inset(0 0 0 0); }
+
+/* line-by-line heading reveal */
+[data-reveal="lines"] .line-mask { display: block; overflow: hidden; }
+[data-reveal="lines"] .line-mask > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 1000ms var(--ease);
+}
+[data-reveal="lines"].is-in .line-mask > span { transform: none; }
+[data-reveal="lines"].is-in .line-mask:nth-child(2) > span { transition-delay: 90ms; }
+[data-reveal="lines"].is-in .line-mask:nth-child(3) > span { transition-delay: 180ms; }
+[data-reveal="lines"].is-in .line-mask:nth-child(4) > span { transition-delay: 270ms; }
+
+/* stagger container: children come in one after another */
+[data-stagger] > * {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 760ms var(--ease), transform 760ms var(--ease);
+}
+[data-stagger].is-in > * { opacity: 1; transform: none; }
+[data-stagger].is-in > *:nth-child(1) { transition-delay: 0ms; }
+[data-stagger].is-in > *:nth-child(2) { transition-delay: 80ms; }
+[data-stagger].is-in > *:nth-child(3) { transition-delay: 160ms; }
+[data-stagger].is-in > *:nth-child(4) { transition-delay: 240ms; }
+[data-stagger].is-in > *:nth-child(5) { transition-delay: 320ms; }
+[data-stagger].is-in > *:nth-child(6) { transition-delay: 400ms; }
+[data-stagger].is-in > *:nth-child(7) { transition-delay: 480ms; }
+[data-stagger].is-in > *:nth-child(8) { transition-delay: 560ms; }
+
+/* mega menu staggered content */
+.mega.is-open .mega__item:nth-child(1) { transition-delay: 40ms; }
+.mega.is-open .mega__item:nth-child(2) { transition-delay: 80ms; }
+.mega.is-open .mega__item:nth-child(3) { transition-delay: 120ms; }
+.mega.is-open .mega__item:nth-child(4) { transition-delay: 160ms; }
+.mega.is-open .mega__item:nth-child(5) { transition-delay: 200ms; }
+.mega.is-open .mega__item:nth-child(6) { transition-delay: 240ms; }
+
+/* mobile menu item stagger */
+.mobile-menu.is-open li:nth-child(1) .mobile-menu__link { transition-delay: 120ms; }
+.mobile-menu.is-open li:nth-child(2) .mobile-menu__link { transition-delay: 180ms; }
+.mobile-menu.is-open li:nth-child(3) .mobile-menu__link { transition-delay: 240ms; }
+.mobile-menu.is-open li:nth-child(4) .mobile-menu__link { transition-delay: 300ms; }
+.mobile-menu.is-open li:nth-child(5) .mobile-menu__link { transition-delay: 360ms; }
+.mobile-menu.is-open li:nth-child(6) .mobile-menu__link { transition-delay: 420ms; }
+
+/* --------------------------------------------------------- logo entrance
+   The official logo file is animated as-is: opacity, a short blur, a small
+   scale and a few pixels of lift. No redraw, no recolour, no distortion, and
+   because only transform/filter/opacity move, the header cannot shift.
+   The two stacked logo files keep their own opacity for the theme swap, so
+   the animation runs on the .brand wrapper rather than on the images.
+   ------------------------------------------------------------------------ */
+html.js:not(.is-hero-ready) .brand { opacity: 0; }
+.is-hero-ready .brand { animation: logo-in 1000ms var(--ease) 80ms both; }
+
+@keyframes logo-in {
+  from { opacity: 0; filter: blur(8px); transform: translateY(9px) scale(0.955); }
+  60%  { opacity: 1; }
+  to   { opacity: 1; filter: blur(0);   transform: translateY(0)  scale(1); }
+}
+
+/* ---------------------------------------------------------- hero entrance */
+.hero__media img, .hero__media video { transition: transform 2600ms var(--ease), opacity 900ms var(--ease); }
+.is-hero-ready .hero__media img, .is-hero-ready .hero__media video { transform: scale(1); }
+.hero__overlay { transition: opacity 900ms var(--ease); }
+.is-hero-ready .hero__overlay { opacity: var(--hero-overlay-opacity, 0.68); }
+
+.hero__title .hero__line > span { transform: translateY(108%); transition: transform 1100ms var(--ease); }
+.is-hero-ready .hero__title .hero__line:nth-child(1) > span { transform: none; transition-delay: 180ms; }
+.is-hero-ready .hero__title .hero__line:nth-child(2) > span { transform: none; transition-delay: 290ms; }
+.is-hero-ready .hero__title .hero__line:nth-child(3) > span { transform: none; transition-delay: 400ms; }
+
+.hero__sub, .hero__actions, .hero__scroll, .hero__meta {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 820ms var(--ease), transform 820ms var(--ease);
+}
+.is-hero-ready .hero__sub     { opacity: 1; transform: none; transition-delay: 560ms; }
+.is-hero-ready .hero__actions { opacity: 1; transform: none; transition-delay: 660ms; }
+.is-hero-ready .hero__meta    { opacity: 1; transform: none; transition-delay: 760ms; }
+.is-hero-ready .hero__scroll  { opacity: 1; transform: none; transition-delay: 860ms; }
+
+.is-hero-ready .header { animation: nav-in 700ms var(--ease) both; }
+@keyframes nav-in { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+
+/* ------------------------------------------------------- page transitions
+   Four panels tile the viewport. On exit they sweep up one after another
+   (clip-path, so nothing is laid out or repainted), while the page itself
+   pulls back a little, blurs and lifts. On arrival the panels peel away in
+   the same order and the content settles in behind them.
+
+   Everything is a CSS keyframe with `both` fill, so the arrival animation
+   runs whether or not JavaScript is alive: the curtain can never strand the
+   page behind it. The panels are pointer-events: none throughout.
+
+   exit   ~420ms   ·   arrival ~640ms
+   ------------------------------------------------------------------------ */
+:root {
+  /* strong acceleration, long glide out */
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-content: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.curtain {
+  position: fixed; inset: 0; z-index: 260;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  pointer-events: none;
+}
+.curtain__panel {
+  display: block;
+  background: var(--band);
+  clip-path: inset(0 0 100% 0);      /* parked above the viewport */
+  will-change: clip-path;
+}
+/* A hairline between panels, so the staggered sweep reads as layers rather
+   than one solid block. */
+.curtain__panel + .curtain__panel { box-shadow: -1px 0 0 rgba(191, 136, 44, 0.22); }
+
+/* ---- arrival: the panels peel upward, fastest first ------------------- */
+html.js .curtain__panel {
+  clip-path: inset(0 0 0 0);
+  animation: curtain-out 540ms var(--ease-curtain) both;
+}
+html.js .curtain__panel:nth-child(1) { animation-delay: 0ms; }
+html.js .curtain__panel:nth-child(2) { animation-delay: 45ms; }
+html.js .curtain__panel:nth-child(3) { animation-delay: 90ms; }
+html.js .curtain__panel:nth-child(4) { animation-delay: 135ms; }
+html.is-rtl.js .curtain__panel:nth-child(1) { animation-delay: 135ms; }
+html.is-rtl.js .curtain__panel:nth-child(2) { animation-delay: 90ms; }
+html.is-rtl.js .curtain__panel:nth-child(3) { animation-delay: 45ms; }
+html.is-rtl.js .curtain__panel:nth-child(4) { animation-delay: 0ms; }
+
+@keyframes curtain-out {
+  from { clip-path: inset(0 0 0 0); }
+  to   { clip-path: inset(0 0 100% 0); }
+}
+
+/* ---- exit: the panels sweep up from the floor ------------------------- */
+html.is-leaving .curtain__panel {
+  animation: curtain-in 330ms var(--ease-curtain) both;
+}
+html.is-leaving .curtain__panel:nth-child(1) { animation-delay: 0ms; }
+html.is-leaving .curtain__panel:nth-child(2) { animation-delay: 30ms; }
+html.is-leaving .curtain__panel:nth-child(3) { animation-delay: 60ms; }
+html.is-leaving .curtain__panel:nth-child(4) { animation-delay: 90ms; }
+html.is-rtl.is-leaving .curtain__panel:nth-child(1) { animation-delay: 90ms; }
+html.is-rtl.is-leaving .curtain__panel:nth-child(2) { animation-delay: 60ms; }
+html.is-rtl.is-leaving .curtain__panel:nth-child(3) { animation-delay: 30ms; }
+html.is-rtl.is-leaving .curtain__panel:nth-child(4) { animation-delay: 0ms; }
+
+@keyframes curtain-in {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* ---- the page itself --------------------------------------------------
+   Only #main is transformed. The header and the floating buttons are fixed
+   and stay out of it, so nothing can jump or lose its scroll position. */
+#main {
+  animation: content-in 680ms var(--ease-content) 120ms both;
+}
+@keyframes content-in {
+  from { opacity: 0; transform: translateY(18px) scale(1.012); }
+  to   { opacity: 1; transform: none; }
+}
+
+html.is-leaving #main {
+  animation: none;
+  opacity: 0.45;
+  transform: translateY(-10px) scale(0.988);
+  transition: opacity 380ms var(--ease-curtain),
+              transform 420ms var(--ease-curtain),
+              filter 380ms var(--ease-curtain);
+}
+html.is-leaving .header,
+html.is-leaving .floats {
+  /* the nav-in entrance animation fills forwards, and a running animation
+     outranks a plain declaration — so it has to be released first */
+  animation: none;
+  opacity: 0;
+  transition: opacity 260ms var(--ease-curtain);
+}
+
+/* Blur is the expensive part, so it is desktop-only. */
+@media (min-width: 901px) {
+  html.is-leaving #main { filter: blur(7px); }
+}
+
+/* ------------------------------------------------- project detail entrance
+   Title, facts, image, body, gallery, video and the pager come in on the same
+   curve as the rest of the site, driven by the same IntersectionObserver. */
+.page-hero__title { opacity: 0; transform: translateY(20px); transition: opacity 900ms var(--ease), transform 900ms var(--ease); }
+.is-hero-ready .page-hero__title { opacity: 1; transform: none; transition-delay: 160ms; }
+
+.page-hero__facts .fact { opacity: 0; transform: translateY(14px); transition: opacity 760ms var(--ease), transform 760ms var(--ease); }
+.is-hero-ready .page-hero__facts .fact { opacity: 1; transform: none; }
+.is-hero-ready .page-hero__facts .fact:nth-child(1) { transition-delay: 300ms; }
+.is-hero-ready .page-hero__facts .fact:nth-child(2) { transition-delay: 380ms; }
+.is-hero-ready .page-hero__facts .fact:nth-child(3) { transition-delay: 460ms; }
+
+.next-project__link { transition: background-color var(--t-mid) var(--ease); }
+.next-project__link:hover { background-color: var(--fg-12); }
+
+/* project cards entering after a filter change */
+.project { transition: opacity 420ms var(--ease), transform 420ms var(--ease); }
+.project.is-filtering { opacity: 0; transform: translateY(14px); }
+
+/* --------------------------------------------------------- reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal], [data-stagger] > *, .hero__sub, .hero__actions, .hero__scroll, .hero__meta {
+    opacity: 1 !important; transform: none !important; clip-path: none !important;
+  }
+  [data-reveal="lines"] .line-mask > span,
+  .hero__title .hero__line > span { transform: none !important; }
+
+  /* the logo simply appears — no blur, no movement */
+  html.js:not(.is-hero-ready) .brand { opacity: 1; }
+  .is-hero-ready .brand { animation: none !important; filter: none !important; transform: none !important; }
+  .page-hero__title, .page-hero__facts .fact { opacity: 1 !important; transform: none !important; }
+  .curtain { display: none; }
+  #main { animation: none !important; }
+  html.is-leaving #main { opacity: 1; transform: none; filter: none; }
+  .hero__overlay { opacity: var(--hero-overlay-opacity, 0.68) !important; }
+  .hero__media img, .hero__media video { transform: scale(1) !important; }
+  .hero__scroll-line::after { animation: none; width: 100%; opacity: 0.5; }
+}
