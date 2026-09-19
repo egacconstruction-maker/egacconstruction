@@ -1,0 +1,48 @@
+# EGAC Construction — Apache configuration (Hostinger & most shared hosts)
+
+ErrorDocument 404 /404.html
+
+# --- compression -------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
+    application/javascript application/json image/svg+xml
+</IfModule>
+
+# --- caching -----------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/jpeg    "access plus 1 month"
+  ExpiresByType image/webp    "access plus 1 month"
+  ExpiresByType image/png     "access plus 1 month"
+  ExpiresByType text/css      "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType video/mp4     "access plus 1 month"
+</IfModule>
+
+# --- force HTTPS -------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# --- never serve the schema, the config template or version control ----------
+<FilesMatch "\.(sql|md|example\.php)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# --- correct types for the hero video and modern images ----------------------
+<IfModule mod_mime.c>
+  AddType video/mp4 .mp4
+  AddType image/webp .webp
+</IfModule>
+
+# --- no directory listings ---------------------------------------------------
+Options -Indexes

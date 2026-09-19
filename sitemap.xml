@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Add one <url> block per project once the real projects are published. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.egacconstruction.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-01</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-02</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-03</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-04</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-05</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-06</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-07</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-08</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-09</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-10</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-11</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-12</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-13</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-14</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-15</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-16</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-17</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-18</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-19</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-20</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-21</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-22</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-23</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-24</loc><priority>0.7</priority></url>
+  <url><loc>https://www.egacconstruction.com/pages/project.html?project=project-25</loc><priority>0.7</priority></url>
+</urlset>

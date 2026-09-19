@@ -1,0 +1,13 @@
+{
+  "name": "EGAC Construction",
+  "short_name": "EGAC",
+  "description": "Facade and architectural solutions: cladding, curtain wall, aluminium, UPVC, copista and advertising materials.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1C30",
+  "theme_color": "#0B1C30",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
